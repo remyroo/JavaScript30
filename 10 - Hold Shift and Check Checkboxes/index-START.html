@@ -97,6 +97,33 @@
   </div>
 
 <script>
+  // grab the nodelist of all checkboxes
+  const checkboxes = document.querySelectorAll(".inbox input[type='checkbox']");
+
+  let lastChecked;
+
+  function handleCheck(e) {
+    let inBetween = false; // flag to manually check boxes
+    
+    // check if the user is pressing the shift key
+    // AND that they are checking the box (not unchecking it)
+    if (e.shiftKey && this.checked) {
+      checkboxes.forEach(checkbox => {
+        if (checkbox === this || checkbox === lastChecked) {
+          inBetween = !inBetween
+        }
+
+        if (inBetween) {
+          checkbox.checked = true;
+        }
+      })
+    }
+
+    lastChecked = this;
+  }
+
+  // add event listener to each checkbox and call handleCheck
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
 </script>
 </body>
 </html>

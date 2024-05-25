@@ -19,28 +19,59 @@
     }
 
     // Regular
+    console.log('Regular console')
 
     // Interpolated
+    let name = 'Remy'
+    console.log(`Hi I'm ${name}`)
 
     // Styled
+    console.log('%c Cool Style', 'font-size: 40px; background: blue;')
 
     // warning!
+    console.warn('Waah Warning')
 
     // Error :|
+    console.error('Oh oh Error!')
 
     // Info
+    console.info('Fun facts!')
 
     // Testing
+    console.assert(1 === 2, 'Text displays if assertion is false')
 
-    // clearing
+    // Clears the console
+    // console.clear()
 
     // Viewing DOM Elements
+    const p = document.querySelector('p')
+    console.log(p) // shows the paragraph element itself
+    console.dir(p) // shows all the methods inside the paragraph element
 
-    // Grouping together
+    // Grouping together: helpful when you have lots of info to parse
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`); // define the group
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} years old in dog years`);
+      console.groupEnd(`${dog.name}`); // use the same string used earlier to define the group
+    })
 
-    // counting
+    // counting: counts the number of times a string or DOM node or anything has been called
+    console.count('Boo')
+    console.count('Yaa')
+    console.count('Yaa')
+    console.count('Yaa')
+    console.count('Boo')
 
-    // timing
+    // timing: how long something takes
+    console.time('fetching data') // start the timer
+    fetch('https://api.github.com/users/remyroo')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data') // use the same string to stop the timer
+        console.log(data) 
+      })
 
   </script>
 </body>
